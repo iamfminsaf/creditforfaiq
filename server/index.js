@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const fs = require("fs");
 const path = require("path");
 
 const userRouter = require("./routes/userRoutes");
@@ -9,12 +10,18 @@ const customerRouter = require("./routes/customerRoutes");
 require("dotenv").config();
 const { FRONTEND, DB_URI, PORT } = process.env;
 
+const uploadDir = path.join(__dirname, "profile");
+
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
+
 const app = express();
 
 app.use(cors({ origin: FRONTEND }));
 app.use(express.json());
 
-app.use("/profile", express.static(path.join(__dirname, "profile")));
+app.use("/profile", express.static(uploadDir));
 app.use("/api/user", userRouter);
 app.use("/api/cus", customerRouter);
 
