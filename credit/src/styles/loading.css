@@ -6,5 +6,26 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-  font-size: xx-large;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 40vw;
+}
+.loading .spin{
+  width: 30%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border-bottom: 2px solid;
+  border-left: 2px solid;
+  border-right: 2px solid;
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin{
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
 }
