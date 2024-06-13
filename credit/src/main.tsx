@@ -11,8 +11,22 @@ ReactDOM.createRoot(document.getElementById("credit")!).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<ProtectedRoute child={<Credit />} />} />
-        <Route path="cus" element={<Customer />} />
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Credit />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="cus"
+          element={
+            <ProtectedRoute>
+              <Customer />
+            </ProtectedRoute>
+          }
+        />
         <Route path="join" element={<Join />} />
       </Routes>
     </BrowserRouter>

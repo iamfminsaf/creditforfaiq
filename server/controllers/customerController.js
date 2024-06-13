@@ -23,6 +23,14 @@ const findBalance = (trans) => {
   return balance;
 };
 
+const findTotalBalance = (cuslist) => {
+  var totalBalance = 0;
+  cuslist.map((cus) => {
+    totalBalance += cus.balance;
+  });
+  return totalBalance;
+};
+
 const anologice = (hour) => {
   if (hour > 12) {
     return hour - 12;
@@ -53,7 +61,9 @@ const getCustomers = async (req, res) => {
       };
     });
 
-    return res.status(200).json({ cusList });
+    const totalBalance = findTotalBalance(cusList);
+
+    return res.status(200).json({ cusList, totalBalance });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ msg: "something wrong" });
@@ -85,21 +95,28 @@ const getCustomer = async (req, res) => {
 const addCustomer = async (req, res) => {
   try {
     const { cusname } = req.body;
-
+    const { uid } = req.user;
+    var newCustomerData = {};
     if (!cusname) {
       return res.status(400).json({ msg: "cusname must be provided" });
     }
 
-    const profile = req.file ? req.file.filename : "/cus.svg";
+    if (!req.file) {
+      newCustomerData = {
+        cusname,
+        uid,
+        star: false,
+      };
+    } else {
+      newCustomerData = {
+        cusname,
+        uid,
+        profile: req.file.filename,
+        star: false,
+      };
+    }
 
-    const { uid } = req.user;
-
-    const newCustomer = await Customer.create({
-      cusname,
-      uid,
-      profile,
-      star: false,
-    });
+    const newCustomer = await Customer.create(newCustomerData);
 
     return res
       .status(201)

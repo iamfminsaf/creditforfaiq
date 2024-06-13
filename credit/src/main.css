@@ -16,3 +16,15 @@ body {
   background: url("back.jpg") center no-repeat;
   background-size: cover;
 }
+
+.happy {
+  color: rgb(33, 226, 81);
+}
+
+.sad {
+  color: rgb(236, 69, 69);
+}
+
+.idle {
+  color: rgb(69, 69, 240);
+}
