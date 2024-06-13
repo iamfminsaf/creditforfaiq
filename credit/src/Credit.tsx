@@ -2,7 +2,7 @@ import "./styles/credit.css"
 
 const Credit = () => {
   return (
-    <div>Credit</div>
+    <div><h2>hoinnqd</h2></div>
   )
 }
 
