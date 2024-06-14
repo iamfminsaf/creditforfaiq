@@ -10,11 +10,12 @@ import starImg from "./assets/star.svg";
 const Credit = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
-  const [totalBalance, setTotalBalance] = useState(0);
-  const [cusList, setCusList] = useState<CustomerType[]>([]);
-  const [staredCusList, setStaredCusList] = useState<CustomerType[]>([]);
   const [allToggle, setAllToggle] = useState(true);
   const [staredToggle, setStaredToggle] = useState(false);
+  const [cusList, setCusList] = useState<CustomerType[]>([]);
+  const [staredCusList, setStaredCusList] = useState<CustomerType[]>([]);
+  const [searchCusList, setSearchCusList] = useState<CustomerType[]>([]);
+  const [totalBalance, setTotalBalance] = useState(0);
 
   const leaveNow = () => {
     localStorage.removeItem("token");
@@ -48,6 +49,19 @@ const Credit = () => {
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
+    var searchCusList: CustomerType[] = [];
+    staredToggle
+      ? staredCusList.map((cus) => {
+          if (cus.cusname.toLowerCase().includes(search.toLocaleLowerCase()))
+            searchCusList.push(cus);
+        })
+      : cusList.map((cus) => {
+          if (
+            cus.cusname.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+          )
+            searchCusList.push(cus);
+        });
+    setSearchCusList(searchCusList);
   };
 
   const toggleList = () => {
@@ -89,26 +103,38 @@ const Credit = () => {
       </button>
 
       <div className="lists">
-        {staredToggle ? (
-          staredCusList.length === 0 ? (
+        {search == "" ? (
+          staredToggle ? (
+            staredCusList.length === 0 ? (
+              <h4 className="nocus">
+                No stared customers.
+                <br />
+                Star customers to access them easily!!.
+              </h4>
+            ) : (
+              staredCusList.map((customer) => (
+                <CusList key={customer.cusID} customer={customer} />
+              ))
+            )
+          ) : cusList.length === 0 ? (
             <h4 className="nocus">
-              No stared customers.
+              No customers.
               <br />
-              Star customers to access them easily!!.
+              Create new using the button below.
             </h4>
           ) : (
-            staredCusList.map((customer) => (
+            cusList.map((customer) => (
               <CusList key={customer.cusID} customer={customer} />
             ))
           )
-        ) : cusList.length === 0 ? (
+        ) : searchCusList.length === 0 ? (
           <h4 className="nocus">
             No customers.
             <br />
             Create new using the button below.
           </h4>
         ) : (
-          cusList.map((customer) => (
+          searchCusList.map((customer) => (
             <CusList key={customer.cusID} customer={customer} />
           ))
         )}
