@@ -13,7 +13,8 @@
 .cus-list .profile {
   height: 65%;
   width: 100%;
-  background-color: white;
+  border-radius: 15px;
+  background-color: black;
 }
 
 .cus-list .profile img {

@@ -4,11 +4,17 @@ import { useNavigate } from "react-router-dom";
 import { CustomerType } from "./types/CustomerType";
 import CusList from "./components/CusList";
 
+import cusImg from "./assets/cus.svg";
+import starImg from "./assets/star.svg";
+
 const Credit = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [totalBalance, setTotalBalance] = useState(0);
   const [cusList, setCusList] = useState<CustomerType[]>([]);
+  const [staredCusList, setStaredCusList] = useState<CustomerType[]>([]);
+  const [allToggle, setAllToggle] = useState(true);
+  const [staredToggle, setStaredToggle] = useState(false);
 
   const leaveNow = () => {
     localStorage.removeItem("token");
@@ -30,8 +36,23 @@ const Credit = () => {
       });
   }, []);
 
+  useEffect(() => {
+    var staredCusList: CustomerType[] = [];
+    cusList.map((list) => {
+      if (list.star) {
+        staredCusList.push(list);
+      }
+    });
+    setStaredCusList(staredCusList);
+  }, [allToggle]);
+
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
+  };
+
+  const toggleList = () => {
+    setAllToggle(!allToggle);
+    setStaredToggle(!staredToggle);
   };
 
   return (
@@ -56,10 +77,31 @@ const Credit = () => {
         <button className="leave-btn" onClick={leaveNow}></button>
       </header>
 
-      <div className="toggle"></div>
+      <button className="toggle" onClick={toggleList}>
+        <div className={`opt ${allToggle ? "active" : ""}`}>
+          <img src={cusImg} alt="all" />
+          All
+        </div>
+        <div className={`opt ${staredToggle ? "active " : ""}`}>
+          <img src={starImg} alt="stared" />
+          Stared
+        </div>
+      </button>
 
       <div className="lists">
-        {cusList.length === 0 ? (
+        {staredToggle ? (
+          staredCusList.length === 0 ? (
+            <h4 className="nocus">
+              No stared customers.
+              <br />
+              Star customers to access them easily!!.
+            </h4>
+          ) : (
+            staredCusList.map((customer) => (
+              <CusList key={customer.cusID} customer={customer} />
+            ))
+          )
+        ) : cusList.length === 0 ? (
           <h4 className="nocus">
             No customers.
             <br />

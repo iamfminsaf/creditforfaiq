@@ -65,6 +65,35 @@
   background-color: #fff4;
   left: 13%;
   top: 15vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.home .toggle .opt {
+  width: 40%;
+  height: 90%;
+  border-radius: 30px;
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 1.4rem;
+}
+
+.home .toggle .opt img {
+  height: 90%;
+  background-color: black;
+  border-radius: 50%;
+}
+
+.home .toggle .active {
+  background-color: white;
+  color: black;
 }
 
 .home .lists {
