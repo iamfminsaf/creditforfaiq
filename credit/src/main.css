@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap");
 
+:root {
+  --happy: #21e251;
+  --sad: #ec4545;
+  --idle: #4545f0;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -18,13 +24,13 @@ body {
 }
 
 .happy {
-  color: rgb(33, 226, 81);
+  color: var(--happy);
 }
 
 .sad {
-  color: rgb(236, 69, 69);
+  color: var(--sad);
 }
 
 .idle {
-  color: rgb(69, 69, 240);
+  color: var(--idle);
 }

@@ -141,7 +141,7 @@
   background-color: white;
 }
 
-.home footer button {
+.home footer .add-new-cu-btn {
   height: 90%;
   aspect-ratio: 1;
   border-radius: 50%;

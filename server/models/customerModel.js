@@ -8,11 +8,11 @@ const transactionSchema = new mongoose.Schema({
 });
 
 const customerSchema = new mongoose.Schema({
-  cusname: String,
   uid: mongoose.Schema.ObjectId,
+  cusname: String,
   profile: String,
-  note: String,
   star: Boolean,
+  note: String,
   transaction: [transactionSchema],
 });
 

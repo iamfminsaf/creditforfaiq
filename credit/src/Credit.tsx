@@ -6,6 +6,7 @@ import CusList from "./components/CusList";
 
 import cusImg from "./assets/cus.svg";
 import starImg from "./assets/star.svg";
+import NewCusForm from "./components/NewCusForm";
 
 const Credit = () => {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ const Credit = () => {
   const [staredCusList, setStaredCusList] = useState<CustomerType[]>([]);
   const [searchCusList, setSearchCusList] = useState<CustomerType[]>([]);
   const [totalBalance, setTotalBalance] = useState(0);
+  const [newCusFormActive, setNewCusFormActive] = useState(false);
 
   const leaveNow = () => {
     localStorage.removeItem("token");
@@ -52,12 +54,26 @@ const Credit = () => {
     var searchCusList: CustomerType[] = [];
     staredToggle
       ? staredCusList.map((cus) => {
-          if (cus.cusname.toLowerCase().includes(search.toLocaleLowerCase()))
+          if (
+            cus.cusname
+              .toLowerCase()
+              .includes(e.target.value.toLocaleLowerCase()) ||
+            cus.balance
+              .toString()
+              .toLocaleLowerCase()
+              .includes(e.target.value.toLocaleLowerCase())
+          )
             searchCusList.push(cus);
         })
       : cusList.map((cus) => {
           if (
-            cus.cusname.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+            cus.cusname
+              .toLocaleLowerCase()
+              .startsWith(e.target.value.toLocaleLowerCase()) ||
+            cus.balance
+              .toString()
+              .toLocaleLowerCase()
+              .startsWith(e.target.value.toLocaleLowerCase())
           )
             searchCusList.push(cus);
         });
@@ -129,9 +145,7 @@ const Credit = () => {
           )
         ) : searchCusList.length === 0 ? (
           <h4 className="nocus">
-            No customers.
-            <br />
-            Create new using the button below.
+            No customer match with your search. Check for spelling!!
           </h4>
         ) : (
           searchCusList.map((customer) => (
@@ -149,8 +163,18 @@ const Credit = () => {
           Rs. {totalBalance}
         </h3>
 
-        <button></button>
+        <button
+          className="add-new-cu-btn"
+          onClick={() => {
+            setNewCusFormActive(true);
+          }}
+        ></button>
       </footer>
+      {newCusFormActive ? (
+        <NewCusForm setNewCusFormActive={setNewCusFormActive} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
