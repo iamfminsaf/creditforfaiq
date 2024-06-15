@@ -98,6 +98,9 @@ const addCustomer = async (req, res) => {
     const { uid } = req.user;
     var newCustomerData = {};
     if (!cusname) {
+      if (req.file) {
+        res.status(200).json({ msg: "profile recived but not cusname" });
+      }
       return res.status(400).json({ msg: "cusname must be provided" });
     }
 

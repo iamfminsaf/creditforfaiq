@@ -7,13 +7,16 @@ type NewCusFormProbs = {
 };
 
 const NewCusForm: React.FC<NewCusFormProbs> = ({ setNewCusFormActive }) => {
-  const [profile, setProfile] = useState(cusvg);
+  const [profile, setProfile] = useState("");
+  const [profileToUpload, setProfileToUpload] = useState<File>();
   const [cusName, setCusName] = useState("");
-  const [formData, setFormData] = useState<FormData>();
+  const [noCusName, setNoCusName] = useState(false);
 
   const handleProfileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const file = e.target.files[0];
+      console.log(file);
+
       const reader = new FileReader();
 
       reader.onload = (e) => {
@@ -29,46 +32,65 @@ const NewCusForm: React.FC<NewCusFormProbs> = ({ setNewCusFormActive }) => {
           ctx?.drawImage(image, 0, 0, width, height);
           const imageDataUrl = canvas.toDataURL(file.type, 0.5);
           setProfile(imageDataUrl);
+          const arr = imageDataUrl.split(",");
+          const mime = arr[0].match(/:(.*?);/)![1];
+          const bstr = atob(arr[1]);
+          let n = bstr.length;
+          const u8arr = new Uint8Array(n);
+          while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+          }
+          setProfileToUpload(new File([u8arr], file.name, { type: mime }));
         };
       };
-
       reader.readAsDataURL(file);
-      const profileFormData = new FormData();
-      profileFormData.set("profile", file);
-      setFormData(profileFormData);
     }
-  };
-
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCusName(e.target.value);
-    const nameFormData = new FormData();
-    nameFormData.set("cusname", e.target.value);
-    setFormData(nameFormData);
   };
 
   const handelSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
-
-    await fetch("http://localhost:8080/api/cus", {
-      method: "post",
-      headers: {
-        "content-Type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-      body: formData,
-    })
-      .then((resp) => resp.json())
-      .then((result) => {
-        console.log(result);
-      });
+    if (cusName != "") {
+      if (profile) {
+        await fetch("http://localhost:8080/api/cus", {
+          method: "post",
+          headers: {
+            "content-Type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: profile,
+        })
+          .then((resp) => resp.json())
+          .then((result) => {
+            console.log(result);
+          });
+      } else {
+        await fetch("http://localhost:8080/api/cus", {
+          method: "post",
+          headers: {
+            "content-Type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({ cusname: cusName }),
+        })
+          .then((resp) => resp.json())
+          .then((result) => {
+            console.log(result);
+          });
+      }
+    } else {
+      setNoCusName(true);
+    }
   };
   return (
     <div className="new-cus-form">
       <form onSubmit={(e) => handelSubmit(e)}>
         <div className="profile">
           <label htmlFor="profile">
-            <img src={profile} alt="profile" />
+            {profile ? (
+              <img src={profile} alt="profile" />
+            ) : (
+              <img src={cusvg} alt="profile" />
+            )}
           </label>
           <input
             type="file"
@@ -82,11 +104,13 @@ const NewCusForm: React.FC<NewCusFormProbs> = ({ setNewCusFormActive }) => {
         <div className="cusname">
           <label htmlFor="cusname">Enter the customer name : </label>
           <input
+            className={noCusName ? "no-cus-name" : ""}
             type="text"
             placeholder="Ex:Insaf FM"
             value={cusName}
             onChange={(e) => {
-              handleNameChange(e);
+              setCusName(e.target.value);
+              setNoCusName(false);
             }}
           />
         </div>
@@ -98,6 +122,8 @@ const NewCusForm: React.FC<NewCusFormProbs> = ({ setNewCusFormActive }) => {
             className="cencel-btn"
             onClick={() => {
               setNewCusFormActive(false);
+              setProfile("");
+              setCusName("");
             }}
           >
             Cencel

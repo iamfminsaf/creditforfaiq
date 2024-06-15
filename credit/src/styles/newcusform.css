@@ -63,6 +63,11 @@
   left: 10%;
 }
 
+.new-cus-form form .cusname .no-cus-name{
+  color: red;
+  border-bottom: red solid 2px;
+}
+
 .new-cus-form form .cusname input {
   border: none;
   outline: none;
