@@ -1,36 +1,36 @@
-@import url("https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
 
 :root {
-  --happy: #21e251;
-  --sad: #ec4545;
-  --idle: #4545f0;
+	--happy: #21e251;
+	--sad: #ec4545;
+	--idle: #4545f0;
 }
 
 * {
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
-  box-sizing: border-box;
-  font-family: "Poetsen One", Arial;
-  transition-duration: 0.3s;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+	box-sizing: border-box;
+	font-family: 'Poetsen One', Arial;
+	transition-duration: 0.3s;
 }
 
 body {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  background: url("back.jpg") center no-repeat;
-  background-size: cover;
+	position: relative;
+	width: 100vw;
+	height: 100vh;
+	background: url('back.jpg') center no-repeat;
+	background-size: cover;
 }
 
 .happy {
-  color: var(--happy);
+	color: var(--happy);
 }
 
 .sad {
-  color: var(--sad);
+	color: var(--sad);
 }
 
 .idle {
-  color: var(--idle);
+	color: var(--idle);
 }

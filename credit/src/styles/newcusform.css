@@ -1,116 +1,116 @@
 :root {
-  --happy: #21e251;
-  --sad: #ec4545;
-  --idle: #4545f0;
+	--happy: #21e251;
+	--sad: #ec4545;
+	--idle: #4545f0;
 }
 
 .new-cus-form {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  background-color: #0004;
-  backdrop-filter: blur(20px);
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	background-color: #0004;
+	backdrop-filter: blur(20px);
 }
 
 .new-cus-form form {
-  position: absolute;
-  width: 75%;
-  height: 75%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #a3cbee94;
-  border-radius: 20px;
+	position: absolute;
+	width: 75%;
+	height: 75%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #a3cbee94;
+	border-radius: 20px;
 }
 
 .new-cus-form form .profile {
-  position: relative;
-  margin: 10%;
-  height: 25vh;
-  aspect-ratio: 1;
+	position: relative;
+	margin: 10%;
+	height: 25vh;
+	aspect-ratio: 1;
 }
 
 .new-cus-form form .profile label {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  border: 5px solid;
-  border-radius: 50%;
-  cursor: pointer;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	border: 5px solid;
+	border-radius: 50%;
+	cursor: pointer;
 }
 
 .new-cus-form form .profile label img {
-  width: 100%;
-  height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 .new-cus-form form .profile input {
-  display: none;
+	display: none;
 }
 
 .new-cus-form form .cusname {
-  position: relative;
-  width: 90%;
-  height: 15vh;
-  margin-left: 5%;
+	position: relative;
+	width: 90%;
+	height: 15vh;
+	margin-left: 5%;
 }
 
 .new-cus-form form .cusname label {
-  position: absolute;
-  display: block;
-  font-size: 1.4rem;
-  left: 10%;
+	position: absolute;
+	display: block;
+	font-size: 1.4rem;
+	left: 10%;
 }
 
-.new-cus-form form .cusname .no-cus-name{
-  color: red;
-  border-bottom: red solid 2px;
+.new-cus-form form .cusname .no-cus-name {
+	color: red;
+	border-bottom: red solid 2px;
 }
 
 .new-cus-form form .cusname input {
-  border: none;
-  outline: none;
-  position: absolute;
-  bottom: 10%;
-  left: 10%;
-  background: linear-gradient(#0000, #fff);
-  height: 50%;
-  width: 70%;
-  border-radius: 15px;
-  padding: 10px;
-  font-size: 1.3rem;
+	border: none;
+	outline: none;
+	position: absolute;
+	bottom: 10%;
+	left: 10%;
+	background: linear-gradient(#0000, #fff);
+	height: 50%;
+	width: 70%;
+	border-radius: 15px;
+	padding: 10px;
+	font-size: 1.3rem;
 }
 
 .new-cus-form form .cusname input:focus {
-  width: 80%;
+	width: 80%;
 }
 
 .new-cus-form form .btn {
-  position: absolute;
-  bottom: 5%;
-  width: 100%;
-  height: 10vh;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+	position: absolute;
+	bottom: 5%;
+	width: 100%;
+	height: 10vh;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
 }
 
 .new-cus-form form .btn button {
-  width: 35%;
-  aspect-ratio: 3;
-  border-radius: 20px;
-  padding: 15px;
-  border: none;
-  outline: none;
-  font-size: large;
-  cursor: pointer;
+	width: 35%;
+	aspect-ratio: 3;
+	border-radius: 20px;
+	padding: 15px;
+	border: none;
+	outline: none;
+	font-size: large;
+	cursor: pointer;
 }
 
 .new-cus-form form .btn .cencel-btn {
-  background-color: var(--sad);
+	background-color: var(--sad);
 }
 
 .new-cus-form form .btn .submit-btn {
-  background-color: var(--happy);
+	background-color: var(--happy);
 }

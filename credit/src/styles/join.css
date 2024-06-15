@@ -1,99 +1,99 @@
-.join{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width: 90vw;
-    height: 95vh;
-    background-color: #fff4;
-    border-radius: 15px;
+.join {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 90vw;
+	height: 95vh;
+	background-color: #fff4;
+	border-radius: 15px;
 }
 
-.join header{
-    width: 100%;
-    height: 15vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    background-color: #fff7;
+.join header {
+	width: 100%;
+	height: 15vh;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	background-color: #fff7;
 }
 
-.join header .logo{
-    width: 50%;
-    height: 90%;
+.join header .logo {
+	width: 50%;
+	height: 90%;
 }
 
-.join header .logo img{
-    width: 100%;
-    height: 100%;
+.join header .logo img {
+	width: 100%;
+	height: 100%;
 }
 
-.join header h1{
-    background-color: white;
-    padding: 10px;
-    border-radius: 10px;
+.join header h1 {
+	background-color: white;
+	padding: 10px;
+	border-radius: 10px;
 }
 
-.join form{
-    position: absolute;
-    top: 20vh;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    height: 70vh;
-    background-color: #fff7;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: column;
+.join form {
+	position: absolute;
+	top: 20vh;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 90%;
+	height: 70vh;
+	background-color: #fff7;
+	border-radius: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-direction: column;
 }
 
-.join form .input{
-    width: 90%;
+.join form .input {
+	width: 90%;
 }
 
-.join form .input label{
-    font-size: 1.4rem;
+.join form .input label {
+	font-size: 1.4rem;
 }
 
-.join form .input .mt{
-    color: red;
+.join form .input .mt {
+	color: red;
 }
 
-.join form .input input{
-    font-size: 1.3rem;
-    width: 80%;
-    padding: 10px;
-    margin-top: 15px;
-    background: linear-gradient(#0000,#fff);
-    border: none;
-    outline: none;
-    border-radius: 10px;
-    transform: translateX(10%);
+.join form .input input {
+	font-size: 1.3rem;
+	width: 80%;
+	padding: 10px;
+	margin-top: 15px;
+	background: linear-gradient(#0000, #fff);
+	border: none;
+	outline: none;
+	border-radius: 10px;
+	transform: translateX(10%);
 }
-.join form .input .mtinput{
-    border-bottom: red solid 2px;
-}
-
-.join form .input input:focus{
-    width: 85%;
+.join form .input .mtinput {
+	border-bottom: red solid 2px;
 }
 
-.join form .err{
-    color: red;
-    border: 2px solid red;
-    border-radius: 10px;
-    padding: 10px;
+.join form .input input:focus {
+	width: 85%;
 }
 
-.join form button{
-    width: 50%;
-    aspect-ratio: 4;
-    border: none;
-    outline: none;
-    background-color: #5ae052;
-    border-radius: 10px;
-    font-size: 1.5rem;
-    cursor: pointer;
+.join form .err {
+	color: red;
+	border: 2px solid red;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.join form button {
+	width: 50%;
+	aspect-ratio: 4;
+	border: none;
+	outline: none;
+	background-color: #5ae052;
+	border-radius: 10px;
+	font-size: 1.5rem;
+	cursor: pointer;
 }
