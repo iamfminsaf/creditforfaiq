@@ -1,9 +1,3 @@
-:root {
-	--happy: #21e251;
-	--sad: #ec4545;
-	--idle: #4545f0;
-}
-
 .new-cus-form {
 	position: absolute;
 	width: 100vw;

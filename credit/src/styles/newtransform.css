@@ -1,0 +1,7 @@
+.new-tras-form {
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	background-color: #0004;
+	backdrop-filter: blur(15px);
+}
