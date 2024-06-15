@@ -1,7 +1,137 @@
 .new-tras-form {
 	position: fixed;
+	z-index: 1000000;
 	width: 100vw;
 	height: 100vh;
 	background-color: #0004;
 	backdrop-filter: blur(15px);
+}
+
+.new-tras-form form {
+	position: absolute;
+	top: 5%;
+	left: 5%;
+	width: 90%;
+	height: 90%;
+	background-color: #0007;
+	border-radius: 15px;
+}
+
+.new-tras-form .desc {
+	position: absolute;
+	top: 10%;
+	left: 5%;
+	width: 90%;
+	height: 30vh;
+}
+
+.new-tras-form .desc label {
+	font-size: 1.8rem;
+	display: block;
+	color: white;
+}
+
+.new-tras-form .desc input {
+	border: none;
+	outline: none;
+	background: linear-gradient(#0000, #fff);
+	height: 20%;
+	width: 60%;
+	border-radius: 15px;
+	font-size: 1.3rem;
+	padding: 20px;
+	margin: 10px 30px;
+}
+
+.new-tras-form .desc input:focus {
+	width: 75%;
+}
+
+.new-tras-form .amount {
+	position: absolute;
+	top: 35%;
+	left: 5%;
+	width: 90%;
+	height: 30vh;
+}
+
+.new-tras-form .amount label {
+	font-size: 1.8rem;
+	display: block;
+	color: white;
+}
+
+.new-tras-form .amount input {
+	border: none;
+	outline: none;
+	background: linear-gradient(#0000, #fff);
+	height: 20%;
+	width: 30%;
+	border-radius: 15px;
+	font-size: 1.3rem;
+	padding: 20px;
+	margin: 10px 30px;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.new-tras-form .vector {
+	position: absolute;
+	left: 10%;
+	bottom: 25%;
+	width: 80%;
+	height: 10vh;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.new-tras-form .vector input {
+	height: 90%;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	font-size: 1.4rem;
+	border: none;
+	outline: none;
+}
+
+.new-tras-form .vector .selected {
+	border: 5px solid;
+}
+
+.new-tras-form .vector .p {
+	background-color: var(--happy);
+}
+
+.new-tras-form .vector .m {
+	background-color: var(--sad);
+}
+
+.new-tras-form form .btns {
+	position: absolute;
+	width: 90%;
+	bottom: 10%;
+	left: 5%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.new-tras-form form .btns button {
+	width: 40%;
+	aspect-ratio: 3;
+	border: none;
+	outline: none;
+	font-size: 1.3rem;
+	border-radius: 20px;
+}
+
+.new-tras-form form .btns .cancel {
+	background-color: var(--sad);
+}
+
+.new-tras-form form .btns .add {
+	background-color: var(--happy);
 }

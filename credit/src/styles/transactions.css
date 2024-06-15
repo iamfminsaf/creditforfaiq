@@ -1,0 +1,33 @@
+.trans-table {
+	width: 95%;
+	margin: 10px;
+	text-align: center;
+	overflow-y: scroll;
+	border-radius: 10px;
+}
+
+.trans-table thead {
+	width: 100%;
+	position: sticky;
+	top: 0;
+}
+
+.trans-table thead tr {
+	border-radius: 10px;
+}
+
+.trans-table thead tr th {
+	padding: 10px;
+	border-radius: 10px;
+	background-color: white;
+}
+
+.trans-table tbody {
+	width: 100%;
+}
+
+.trans-table tbody tr td {
+	padding: 15px;
+    color: white;
+    border-radius: 10px;
+}

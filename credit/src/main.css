@@ -31,6 +31,14 @@ body {
 	color: var(--sad);
 }
 
+.happy-trans td {
+	background-color: var(--happy);
+}
+
+.sad-trans td {
+	background-color: var(--sad);
+}
+
 .idle {
 	color: var(--idle);
 }

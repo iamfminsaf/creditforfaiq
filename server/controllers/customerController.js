@@ -154,7 +154,7 @@ const addTransaction = async (req, res) => {
 		customer.transaction.push(newTransaction);
 		await customer.save();
 
-		return res.status(201).json({ msg: 'transaction saved' });
+		return res.status(201).json({ newTransaction, msg: 'transaction saved' });
 	} catch (err) {
 		console.log(err);
 		return res.status(500).json({ msg: 'something wrong' });
