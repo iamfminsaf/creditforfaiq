@@ -14,7 +14,7 @@ const Join = () => {
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		const formData = { uname, pwd };
-		const resp = await fetch('http://localhost:8080/api/user/join', {
+		const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/user/join`, {
 			method: 'post',
 			headers: {
 				'Content-Type': 'application/json',

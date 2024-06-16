@@ -25,7 +25,7 @@ const Credit = () => {
 	};
 
 	useEffect(() => {
-		fetch('http://localhost:8080/api/cus/', {
+		fetch(`${import.meta.env.VITE_SERVER_URL}/api/cus`, {
 			method: 'get',
 			headers: {
 				'Content-Type': 'application/json',
@@ -123,7 +123,7 @@ const Credit = () => {
 			</div>
 
 			<footer>
-				<h3 className={totalBalance < 0 ? 'happy' : totalBalance == 0 ? 'idle' : 'sad'}>Rs. {totalBalance < 0 ? totalBalance * -1 : totalBalance}</h3>
+				<h3 className={totalBalance > 0 ? 'happy' : totalBalance == 0 ? 'idle' : 'sad'}>Rs. {totalBalance < 0 ? totalBalance * -1 : totalBalance}</h3>
 
 				<button
 					className="add-new-cu-btn"

@@ -17,12 +17,12 @@ const Customer = () => {
 	const [balance, setBalance] = useState(0);
 	const [star, setStar] = useState(false);
 	const [transaction, setTransaction] = useState<transactionType[]>([{ amount: 0, desc: 'Loading..', time: 'XX:XX XM', date: 'XX/XXX' }]);
-	const [note, setNote] = useState("Loading..");
+	const [note, setNote] = useState('Loading..');
 	const [newTransFormActive, setNewTransFormActive] = useState(false);
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		fetch(`http://localhost:8080/api/cus/${id}`, {
+		fetch(`${import.meta.env.VITE_SERVER_URL}/api/cus/${id}`, {
 			method: 'get',
 			headers: {
 				'content-Type': 'application/json',
@@ -41,7 +41,7 @@ const Customer = () => {
 	}, []);
 
 	const starCus = () => {
-		fetch(`http://localhost:8080/api/cus/${id}/star`, {
+		fetch(`${import.meta.env.VITE_SERVER_URL}/api/cus/${id}/star`, {
 			method: 'put',
 			headers: {
 				'content-Type': 'application/json',
@@ -57,6 +57,10 @@ const Customer = () => {
 	const newTransaction = (trans: transactionType) => {
 		transaction.push(trans);
 	};
+
+	const newBalance = (amount: number) => {
+		setBalance(balance + amount);
+	};
 	return (
 		<>
 			<div className="customer">
@@ -65,12 +69,18 @@ const Customer = () => {
 				</Helmet>
 				<button className="back" onClick={() => navigate('/')}></button>
 				<div className="details">
-					<div className="profile">{profile ? <img src={`http://localhost:8080/profile/${profile}`} alt="profile" /> : <img src={cusvg} alt="profile" />}</div>
+					<div className="profile">{profile ? <img src={`${import.meta.env.VITE_SERVER_URL}/profile/${profile}`} alt="profile" /> : <img src={cusvg} alt="profile" />}</div>
 					<button className="star" onClick={starCus}>
 						<img src={star ? starImg : unstarImg} alt="star" />
 					</button>
 					<h2 className="cusname">{cusName}</h2>
-					<textarea className="note" value={note} onChange={e=>{setNote(e.target.value)}} />
+					<textarea
+						className="note"
+						value={note}
+						onChange={(e) => {
+							setNote(e.target.value);
+						}}
+					/>
 				</div>
 				<div className="transactions">
 					{transaction?.length !== 0 ? (
@@ -83,7 +93,7 @@ const Customer = () => {
 					)}
 				</div>
 				<footer>
-					<h3 className={balance < 0 ? 'happy' : balance == 0 ? 'idle' : 'sad'}>Rs. {balance < 0 ? balance * -1 : balance}</h3>
+					<h3 className={balance > 0 ? 'happy' : balance == 0 ? 'idle' : 'sad'}>Rs. {balance < 0 ? balance * -1 : balance}</h3>
 
 					<button
 						className="add-new-cus-btn"
@@ -92,7 +102,7 @@ const Customer = () => {
 						}}></button>
 				</footer>
 			</div>
-			{newTransFormActive ? <NewTransForm id={id} cusname={cusName} newTransaction={newTransaction} setNewTransFormActive={setNewTransFormActive} balance={balance} setBalance={setBalance} /> : <></>}
+			{newTransFormActive ? <NewTransForm id={id} cusname={cusName} newTransaction={newTransaction} setNewTransFormActive={setNewTransFormActive} newBalance={newBalance} /> : <></>}
 		</>
 	);
 };

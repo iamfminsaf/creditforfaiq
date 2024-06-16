@@ -7,11 +7,10 @@ type NewCusFormProbs = {
 	cusname: string | null;
 	setNewTransFormActive: React.Dispatch<SetStateAction<boolean>>;
 	newTransaction: ({}: transactionType) => void;
-	balance: number | null;
-	setBalance: (amount: number) => void;
+	newBalance: (balance: number) => void;
 };
 
-const NewTransForm: React.FC<NewCusFormProbs> = ({ id, cusname, setNewTransFormActive, newTransaction }) => {
+const NewTransForm: React.FC<NewCusFormProbs> = ({ id, cusname, setNewTransFormActive, newTransaction, newBalance }) => {
 	const [desc, setDesc] = useState('');
 	const [amount, setAmount] = useState<number>();
 	const [vector, setVector] = useState<'p' | 'm'>('p');
@@ -31,7 +30,7 @@ const NewTransForm: React.FC<NewCusFormProbs> = ({ id, cusname, setNewTransFormA
 				amount: amountWithVector,
 			};
 
-			fetch(`http://localhost:8080/api/cus/${id}`, {
+			fetch(`${import.meta.env.VITE_SERVER_URL}/api/cus/${id}`, {
 				method: 'post',
 				headers: {
 					'content-Type': 'application/json',
@@ -44,7 +43,7 @@ const NewTransForm: React.FC<NewCusFormProbs> = ({ id, cusname, setNewTransFormA
 					if (result.newTransaction) {
 						newTransaction(result.newTransaction);
 						setNewTransFormActive(false);
-						setAmount(amount + result.newTransaction.amount);
+						newBalance(result.newTransaction.amount);
 					}
 				});
 		}

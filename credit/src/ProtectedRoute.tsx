@@ -15,7 +15,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProbs> = ({ children }) => {
 			navigate('/join');
 			console.log('AuthToken not found !!!');
 		} else {
-			fetch('http://localhost:8080/api/user/verify', {
+			fetch(`${import.meta.env.VITE_SERVER_URL}/api/user/verify`, {
 				method: 'post',
 				headers: {
 					'Content-Type': 'application/json',

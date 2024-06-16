@@ -56,7 +56,7 @@ const NewCusForm: React.FC<NewCusFormProbs> = ({ setNewCusFormActive }) => {
 			if (profileToUpload) {
 				formData.append('profile', profileToUpload);
 			}
-			await fetch('http://localhost:8080/api/cus', {
+			await fetch(`${import.meta.env.VITE_SERVER_URL}/api/cus`, {
 				method: 'POST',
 				headers: {
 					authorization: `Bearer ${localStorage.getItem('token')}`,
