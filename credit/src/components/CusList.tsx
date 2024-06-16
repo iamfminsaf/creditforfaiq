@@ -25,7 +25,7 @@ const CusList = (probs: CusListProbs) => {
 			</div>
 			<div className="detail">
 				<p className="cusname">{cusname}</p>
-				<p className={`balance ${probs.customer.balance > 0 ? 'happy' : probs.customer.balance == 0 ? 'idle' : 'sad'}`}>{balance}</p>
+				<p className={`balance ${probs.customer.balance < 0 ? 'happy' : probs.customer.balance == 0 ? 'idle' : 'sad'}`}>{balance}</p>
 			</div>
 		</div>
 	);

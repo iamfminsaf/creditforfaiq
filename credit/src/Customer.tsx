@@ -93,7 +93,7 @@ const Customer = () => {
 					)}
 				</div>
 				<footer>
-					<h3 className={balance > 0 ? 'happy' : balance == 0 ? 'idle' : 'sad'}>Rs. {balance < 0 ? balance * -1 : balance}</h3>
+					<h3 className={balance < 0 ? 'happy' : balance == 0 ? 'idle' : 'sad'}>Rs. {balance < 0 ? balance * -1 : balance}</h3>
 
 					<button
 						className="add-new-cus-btn"
