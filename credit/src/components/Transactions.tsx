@@ -14,7 +14,7 @@ const Transactions = ({ transactions }: { transactions: transactionType[] }) => 
 			</thead>
 			<tbody>
 				{transactions.map((trans) => (
-					<tr className={trans.amount > 0 ? 'happy-trans' : 'sad-trans'}>
+					<tr className={trans.amount < 0 ? 'happy-trans' : 'sad-trans'}>
 						<td>{trans.time}</td>
 						<td>{trans.date}</td>
 						<td>{trans.desc}</td>
