@@ -1,34 +1,53 @@
 import React, { SetStateAction, useState } from 'react';
 import '../styles/newtransform.css';
+import { transactionType } from '../types/Transaction';
 
 type NewCusFormProbs = {
 	id: string | null;
+	cusname: string | null;
 	setNewTransFormActive: React.Dispatch<SetStateAction<boolean>>;
+	newTransaction: ({}: transactionType) => void;
+	balance: number | null;
+	setBalance: (amount: number) => void;
 };
 
-const NewTransForm: React.FC<NewCusFormProbs> = ({ id, setNewTransFormActive }) => {
-	const [desc, setDesc] = useState('No description');
-	const [amount, setAmount] = useState(0);
+const NewTransForm: React.FC<NewCusFormProbs> = ({ id, cusname, setNewTransFormActive, newTransaction }) => {
+	const [desc, setDesc] = useState('');
+	const [amount, setAmount] = useState<number>();
 	const [vector, setVector] = useState<'p' | 'm'>('p');
+	const [noAmount, setNoAmount] = useState(false);
 	const handleNewTransFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		const amountWithVector = vector == 'p' ? amount : amount * -1;
-		const formData = {
-			desc,
-			amount: amountWithVector,
-		};
-		fetch(`http://localhost:8080/api/cus/${id}`, {
-			method: 'post',
-			headers: {
-				'content-Type': 'application/json',
-				authorization: `Beared ${localStorage.getItem('token')}`,
-			},
-			body: JSON.stringify(formData),
-		})
-			.then((resp) => resp.json())
-			.then((result) => {
-				console.log(result);
-			});
+		if (amount == undefined) {
+			console.log(amount);
+
+			setNoAmount(true);
+		} else {
+			const amountWithVector = vector == 'p' ? amount : amount * -1;
+
+			const descToSend = desc == '' ? 'No description' : desc;
+			const formData = {
+				desc: descToSend,
+				amount: amountWithVector,
+			};
+
+			fetch(`http://localhost:8080/api/cus/${id}`, {
+				method: 'post',
+				headers: {
+					'content-Type': 'application/json',
+					authorization: `Beared ${localStorage.getItem('token')}`,
+				},
+				body: JSON.stringify(formData),
+			})
+				.then((resp) => resp.json())
+				.then((result) => {
+					if (result.newTransaction) {
+						newTransaction(result.newTransaction);
+						setNewTransFormActive(false);
+						setAmount(amount + result.newTransaction.amount);
+					}
+				});
+		}
 	};
 	return (
 		<div className="new-tras-form">
@@ -36,6 +55,9 @@ const NewTransForm: React.FC<NewCusFormProbs> = ({ id, setNewTransFormActive }) 
 				onSubmit={(e) => {
 					handleNewTransFormSubmit(e);
 				}}>
+				<h2>
+					Adding for <span>{cusname}</span>
+				</h2>
 				<div className="desc">
 					<label htmlFor="desc">Enter thr description :</label>
 					<input
@@ -45,16 +67,21 @@ const NewTransForm: React.FC<NewCusFormProbs> = ({ id, setNewTransFormActive }) 
 						onChange={(e) => {
 							setDesc(e.target.value);
 						}}
+						placeholder="No description"
 					/>
 				</div>
 				<div className="amount">
-					<label htmlFor="amount">Transaction amount :</label>
+					<label htmlFor="amount" className={noAmount ? 'no-amount' : ''}>
+						Transaction amount :
+					</label>
 					<input
+						className={noAmount ? 'no-amount' : ''}
 						type="number"
 						id="amount"
 						value={amount}
 						onChange={(e) => {
 							setAmount(Number.parseFloat(e.target.value));
+							setNoAmount(false);
 						}}
 						placeholder="XXXX"
 					/>
@@ -62,18 +89,18 @@ const NewTransForm: React.FC<NewCusFormProbs> = ({ id, setNewTransFormActive }) 
 				<div className="vector">
 					<input
 						type="button"
-						value="+"
-						className={`p ${vector == 'p' ? 'selected' : ''}`}
-						onClick={() => {
-							setVector('p');
-						}}
-					/>
-					<input
-						type="button"
 						value="-"
 						className={`m ${vector == 'm' ? 'selected' : ''}`}
 						onClick={() => {
 							setVector('m');
+						}}
+					/>
+					<input
+						type="button"
+						value="+"
+						className={`p ${vector == 'p' ? 'selected' : ''}`}
+						onClick={() => {
+							setVector('p');
 						}}
 					/>
 				</div>

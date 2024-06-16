@@ -3,7 +3,7 @@
 	z-index: 1000000;
 	width: 100vw;
 	height: 100vh;
-	background-color: #0004;
+	background-color: rgba(128, 201, 250, 0.267);
 	backdrop-filter: blur(15px);
 }
 
@@ -17,9 +17,30 @@
 	border-radius: 15px;
 }
 
+.new-tras-form form h2 {
+	padding: 10px;
+	background-color: white;
+	height: 10%;
+	width: 96%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 20px;
+	margin-left: 2%;
+	margin-top: 2%;
+}
+
+.new-tras-form form h2 span{
+	padding: 10px;
+	margin-left: 5px;
+	border-radius: 10px;
+	background-color: black;
+	color: white;
+}
+
 .new-tras-form .desc {
 	position: absolute;
-	top: 10%;
+	top: 15%;
 	left: 5%;
 	width: 90%;
 	height: 30vh;
@@ -77,6 +98,10 @@
 	appearance: none;
 }
 
+.new-tras-form .amount .no-amount {
+	color: var(--sad);
+}
+
 .new-tras-form .vector {
 	position: absolute;
 	left: 10%;
@@ -102,11 +127,11 @@
 }
 
 .new-tras-form .vector .p {
-	background-color: var(--happy);
+	background-color: var(--sad);
 }
 
 .new-tras-form .vector .m {
-	background-color: var(--sad);
+	background-color: var(--happy);
 }
 
 .new-tras-form form .btns {
@@ -126,6 +151,7 @@
 	outline: none;
 	font-size: 1.3rem;
 	border-radius: 20px;
+	cursor: pointer;
 }
 
 .new-tras-form form .btns .cancel {

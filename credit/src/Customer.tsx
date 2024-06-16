@@ -17,7 +17,7 @@ const Customer = () => {
 	const [balance, setBalance] = useState(0);
 	const [star, setStar] = useState(false);
 	const [transaction, setTransaction] = useState<transactionType[]>([{ amount: 0, desc: 'Loading..', time: 'XX:XX XM', date: 'XX/XXX' }]);
-	const [note, setNote] = useState();
+	const [note, setNote] = useState("Loading..");
 	const [newTransFormActive, setNewTransFormActive] = useState(false);
 	const navigate = useNavigate();
 
@@ -53,6 +53,10 @@ const Customer = () => {
 				setStar(result.star);
 			});
 	};
+
+	const newTransaction = (trans: transactionType) => {
+		transaction.push(trans);
+	};
 	return (
 		<>
 			<div className="customer">
@@ -66,7 +70,7 @@ const Customer = () => {
 						<img src={star ? starImg : unstarImg} alt="star" />
 					</button>
 					<h2 className="cusname">{cusName}</h2>
-					<p className="note">{note}</p>
+					<textarea className="note" value={note} onChange={e=>{setNote(e.target.value)}} />
 				</div>
 				<div className="transactions">
 					{transaction?.length !== 0 ? (
@@ -88,7 +92,7 @@ const Customer = () => {
 						}}></button>
 				</footer>
 			</div>
-			{newTransFormActive ? <NewTransForm id={id} setNewTransFormActive={setNewTransFormActive} /> : <></>}
+			{newTransFormActive ? <NewTransForm id={id} cusname={cusName} newTransaction={newTransaction} setNewTransFormActive={setNewTransFormActive} balance={balance} setBalance={setBalance} /> : <></>}
 		</>
 	);
 };

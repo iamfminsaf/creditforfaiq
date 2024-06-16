@@ -18,7 +18,7 @@ const Transactions = ({ transactions }: { transactions: transactionType[] }) => 
 						<td>{trans.time}</td>
 						<td>{trans.date}</td>
 						<td>{trans.desc}</td>
-						<td>Rs.{trans.amount}</td>
+						<td>Rs.{trans.amount < 0 ? trans.amount * -1 : trans.amount}</td>
 					</tr>
 				))}
 			</tbody>

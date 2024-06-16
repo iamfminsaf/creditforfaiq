@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
 
 :root {
-	--happy: #21e251;
+	/* --happy: #21e251; */
+	--happy: #00ff80;
 	--sad: #ec4545;
 	--idle: #4545f0;
 }
@@ -31,12 +32,25 @@ body {
 	color: var(--sad);
 }
 
+footer .happy {
+	padding: 10px;
+	border-radius: 10px;
+	background-color: black;
+}
+
+footer .sad{
+	padding: 10px;
+	border-radius: 10px;
+	background-color: black;}
+
 .happy-trans td {
 	background-color: var(--happy);
+	color: black;
 }
 
 .sad-trans td {
 	background-color: var(--sad);
+	color: white;
 }
 
 .idle {
