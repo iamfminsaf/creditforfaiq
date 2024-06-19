@@ -67,14 +67,20 @@ const Credit = () => {
 		setStaredToggle(!staredToggle);
 	};
 
+	const download = () => {
+		const a = document.createElement('a');
+		a.href = 'https://drive.google.com/file/d/1YSTXiUTaBVWKjHJfVyoGiY40J3hXFctg/view?usp=sharing';
+		a.setAttribute('download', '.credit.apk');
+		a.click();
+		console.log('download');
+	};
+
 	return (
 		<div className="home">
 			<header>
 				<button
 					className="logo"
-					onClick={() => {
-						history.go(0);
-					}}></button>
+					onClick={download}></button>
 
 				<div className="search">
 					<input type="search" placeholder="Search.." value={search} onChange={(e) => handleSearch(e)} />
