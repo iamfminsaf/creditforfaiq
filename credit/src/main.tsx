@@ -27,14 +27,6 @@ ReactDOM.createRoot(document.getElementById('credit')!).render(
 						</ProtectedRoute>
 					}
 				/>
-				<Route
-					path="download"
-					element={
-						<ProtectedRoute>
-							<Customer />
-						</ProtectedRoute>
-					}
-				/>
 				<Route path="join" element={<Join />} />
 			</Routes>
 		</BrowserRouter>
